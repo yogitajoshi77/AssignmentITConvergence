@@ -21,9 +21,9 @@ struct StarView: View {
     let isFilled: Bool
     let color: Color
     
-    private let fullStarImage: Image = Image(systemName: "star.fill")
-    private let halfStarImage: Image = Image(systemName: "star.lefthalf.fill")
-    private let emptyStarImage: Image = Image(systemName: "star")
+    private let fullStarImage: Image = Image(systemName: ImageNameConstants.starfill)
+    private let halfStarImage: Image = Image(systemName: ImageNameConstants.starLeftHalfFill)
+    private let emptyStarImage: Image = Image(systemName: ImageNameConstants.star)
     
     var body: some View {
         isFilled ? fullStarImage : emptyStarImage
@@ -37,9 +37,9 @@ struct RatingView: View {
     let starRounding: StarRounding
     let size: CGFloat
     
-    private let fullStarImage: Image = Image(systemName: "star.fill")
-    private let halfStarImage: Image = Image(systemName: "star.lefthalf.fill")
-    private let emptyStarImage: Image = Image(systemName: "star")
+    private let fullStarImage: Image = Image(systemName: ImageNameConstants.starFill)
+    private let halfStarImage: Image = Image(systemName: ImageNameConstants.starLeftHalfFill)
+    private let emptyStarImage: Image = Image(systemName: ImageNameConstants.star)
     
     @State private var selectedStar: Int?
     

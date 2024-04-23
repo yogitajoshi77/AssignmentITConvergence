@@ -7,7 +7,7 @@
 
 import Foundation
 
-// This file constant value for the screen
+// This file is used for constant value for the screen
 enum StringConstants {
     static let delete = "Delete"
     static let edit = "Edit"

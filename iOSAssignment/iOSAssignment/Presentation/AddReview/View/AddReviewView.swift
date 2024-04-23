@@ -11,13 +11,18 @@ import SwiftUI
 struct AddReviewView: View {
     
     // MARK: - Properties
-    @State var restaurantObj: Restaurant
+    @State var selectedRestaurant: Restaurant
     @State var ratingStar: Double = 0.0
     @State var date: Date = Date.now
     @State var ratingString: String = ""
     
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) private var modelContext
+        
+    // MARK: - Init Method
+    init(selectedRestaurant: Restaurant) {
+        self.selectedRestaurant = selectedRestaurant
+    }
 
     // MARK: - Body
     var body: some View {
@@ -41,8 +46,8 @@ struct AddReviewView: View {
             // Button is for saving review in DB
             Button(action: {
                 withAnimation {
-                    let newRating = RestaurantRating(restaurant: restaurantObj, rating: ratingStar, date: date, notes: ratingString)
-                    restaurantObj.ratings?.append(newRating)
+                    let newRating = RestaurantRating(restaurant: selectedRestaurant, rating: ratingStar, date: date, notes: ratingString)
+                    selectedRestaurant.ratings?.append(newRating)
                     modelContext.insert(newRating)
                 }
                 dismiss()

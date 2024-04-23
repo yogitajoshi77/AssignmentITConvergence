@@ -6,10 +6,13 @@
 //
 
 import Foundation
-class RestaurantRatingVM: ObservableObject {
+import Observation
+
+@Observable 
+final class RestaurantRatingVM {
     
     // MARK: - Properties
-    @Published var showingSheet = false
+    var showingSheet = false
     
     // MARK: - Init method
     init(showingSheet: Bool = false) {

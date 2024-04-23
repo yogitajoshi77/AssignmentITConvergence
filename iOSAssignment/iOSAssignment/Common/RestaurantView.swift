@@ -20,6 +20,7 @@ struct RestaurantView: View {
                 StarAverageView.init(averageRating: averageRating())
                     .padding(.leading, 20)
                 Text(restaurant.name)
+                    .padding(.top, 10)
                 Spacer()
             }
         } else {
@@ -27,7 +28,7 @@ struct RestaurantView: View {
                 HStack(alignment: .top) {
                     StarAverageView.init(averageRating: averageRating())
                     Text(restaurant.name)
-                        .padding(.top, 8)
+                        .padding(.top, 10)
                     Spacer()
                 }
                 HStack {

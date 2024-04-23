@@ -11,18 +11,23 @@ import SwiftData
 struct RestaurantRatingView: View {
     
     // MARK: - Properties
-    @Environment(\.modelContext) private var modelContext
-    @StateObject var viewModel = RestaurantRatingVM()
-    @State var restaurantObj: Restaurant
+    @State var viewModel: RestaurantRatingVM
+    @State var selectedRestaurant: Restaurant
+    
+    // MARK: - Init method
+    init(viewModel: RestaurantRatingVM, selectedRestaurant: Restaurant) {
+        self.viewModel = viewModel
+        self.selectedRestaurant = selectedRestaurant
+    }
     
     // MARK: - Body
     var body: some View {
         VStack {
-            RestaurantView(restaurant: restaurantObj, isReviewScreen: true)
+            RestaurantView(restaurant: selectedRestaurant, isReviewScreen: true)
                 .padding(.bottom, 20)
                 .padding(.top, 4)
                 .background(Color.teal)
-            if let ratingArr = restaurantObj.ratings, ratingArr.isEmpty == false {
+            if let ratingArr = selectedRestaurant.ratings, ratingArr.isEmpty == false {
                 List {
                     ForEach(Array(ratingArr.enumerated()), id: \.offset) { index, item in
                         ReviewView(ratingObj: item)
@@ -38,16 +43,16 @@ struct RestaurantRatingView: View {
                 Spacer()
             }
         }
-        .navigationTitle("\(StringConstants.ratingView) (\(restaurantObj.ratings?.count ?? 0))")
+        .navigationTitle("\(StringConstants.ratingView) (\(selectedRestaurant.ratings?.count ?? 0))")
         .navigationBarTitle("", displayMode: .inline) // used for navigation title to top of the screen
         .toolbarRole(.editor) // used for hide the navigationbar back button title
         .toolbar {
             ToolbarItem {
-                Button(StringConstants.addRating, systemImage: "plus") {
+                Button(StringConstants.addRating, systemImage: ImageNameConstants.plus) {
                     viewModel.showingSheet.toggle()
                 }
                 .sheet(isPresented: $viewModel.showingSheet) {
-                    AddReviewView(restaurantObj: restaurantObj)
+                    AddReviewView(selectedRestaurant: selectedRestaurant)
                 }
                 
             }
@@ -66,6 +71,7 @@ struct ReviewView: View {
             HStack(alignment: .top) {
                 StarAverageView.init(averageRating: ratingObj.rating)
                 Text(ratingObj.notes)
+                    .padding(.top, 8)
                 Spacer()
             }
             Divider()

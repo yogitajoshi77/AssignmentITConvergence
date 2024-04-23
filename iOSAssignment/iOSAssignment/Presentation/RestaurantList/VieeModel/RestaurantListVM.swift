@@ -6,12 +6,14 @@
 //
 
 import Foundation
+import Observation
 
-class RestaurantListVM: ObservableObject {
+@Observable
+final class RestaurantListVM {
     // MARK: - Properties
-    @Published var showingSheet = false
-    @Published var showingEditRestaurantSheet = false
-    @Published var selections: [String] = []
+    var showingSheet = false
+    var showingEditRestaurantSheet = false
+    var selections: [String] = []
 
     // MARK: - init method
     init(showingSheet: Bool = false, showingEditRestaurantSheet: Bool = false) {

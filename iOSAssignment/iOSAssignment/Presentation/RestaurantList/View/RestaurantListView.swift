@@ -11,8 +11,13 @@ import SwiftData
 struct RestaurantListView: View {
     // MARK: - Properties
     @Environment(\.modelContext) private var modelContext
-    @StateObject var viewModel = RestaurantListVM()
+    @State var viewModel: RestaurantListVM
     @Query var items: [Restaurant]
+    
+    // MARK: - Init method
+    init(viewModel: RestaurantListVM) {
+        self.viewModel = viewModel
+    }
     
     // MARK: - Body
     var body: some View {
@@ -20,7 +25,8 @@ struct RestaurantListView: View {
             List {
                 ForEach(Array(items.enumerated()), id: \.offset) { index, item in
                     NavigationLink {
-                        RestaurantRatingView(restaurantObj: item)
+                        // viewModel and selected restaurant as dependancy injection
+                        RestaurantRatingView(viewModel: RestaurantRatingVM(), selectedRestaurant: item)
                     } label: {
                         RestaurantView(restaurant: item)
                         // .swipeActions will provide swipe functionality in list and we can add Buttons on it
@@ -41,7 +47,7 @@ struct RestaurantListView: View {
                                 .tint(.green)
                                 
                             }
-                        // .sheet will present sheet for editing restaurant
+                            // .sheet will present sheet for editing restaurant
                             .sheet(isPresented: $viewModel.showingEditRestaurantSheet) {
                                 AddRestaurantView(restaurant: item, selections: viewModel.selections)
                             }
@@ -61,7 +67,7 @@ struct RestaurantListView: View {
             .toolbar {
                 ToolbarItem {
                     // Add button for adding restaurant in restaurant list
-                    Button(StringConstants.addItem, systemImage: "plus") {
+                    Button(StringConstants.addItem, systemImage: ImageNameConstants.plus) {
                         viewModel.showingSheet.toggle()
                     }
                     .sheet(isPresented: $viewModel.showingSheet) {

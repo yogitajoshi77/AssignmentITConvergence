@@ -27,7 +27,8 @@ struct iOSAssignmentApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RestaurantListView()
+            // passing viewModel object as dependancy injection
+            RestaurantListView(viewModel: RestaurantListVM())
         }
         .modelContainer(sharedModelContainer)
     }
