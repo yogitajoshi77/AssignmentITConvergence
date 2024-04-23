@@ -27,16 +27,17 @@ struct AddReviewView: View {
     // MARK: - Body
     var body: some View {
         VStack {
+            // Show Title on the Screen
             Text(StringConstants.addRating)
                 .font(.largeTitle)
-            
+            // Rating View is used to give rating
             RatingView(maxRating: 5, rating: $ratingStar, starColor: .blue, starRounding: .roundToHalfStar)
                 .padding()
-            
+            // Select date from DatePicker
             DatePicker(selection: $date, in: ...Date.now, displayedComponents: .date) {
                 Text(StringConstants.selectDate)
             }
-            
+            // Write review
             TextField(StringConstants.enterReview, text: $ratingString)
                 .frame(height: 50)
                 .padding([.leading], 20)
@@ -50,6 +51,7 @@ struct AddReviewView: View {
                     selectedRestaurant.ratings?.append(newRating)
                     modelContext.insert(newRating)
                 }
+                // afte entering review dismiss the screen
                 dismiss()
             }) {
                 HStack{

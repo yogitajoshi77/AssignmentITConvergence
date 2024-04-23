@@ -36,7 +36,6 @@ struct RestaurantRatingView: View {
                     }
                 }.listStyle(.plain)
                     .padding(.all, 20)
-                
             } else {
                 Spacer()
                 Text(StringConstants.noRatingAvailable)
