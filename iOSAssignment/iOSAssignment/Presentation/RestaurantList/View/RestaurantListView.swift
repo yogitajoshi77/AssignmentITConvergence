@@ -33,7 +33,8 @@ struct RestaurantListView: View {
                             .swipeActions(edge: .trailing) {
                                 // Delete button for deleting item from the restaurant list
                                 Button(StringConstants.delete) {
-                                    self.deleteItems(index: index)
+//                                    self.deleteItems(index: index)
+                                    self.viewModel.deleteItems(items: items, index: index, context: modelContext)
                                 }
                                 .tint(.red)
                                 
@@ -77,49 +78,8 @@ struct RestaurantListView: View {
                 }
             }
             .onAppear {
-                self.saveCuisineDta()
-            }
-        }
-    }
-}
-
-// extension made to put all private method in one place
-extension RestaurantListView {
-    
-    /// This function is used to check that if cuisine are loded or not
-    /// - Returns: [Cuisine]
-    private func loadCuisine() -> [Cuisine] {
-        var items: [Cuisine] = []
-        let fetchDescriptor = FetchDescriptor<Cuisine>(sortBy: [SortDescriptor(\Cuisine.cuisinStr)])
-        do {
-            items = try modelContext.fetch(fetchDescriptor)
-            // print(items)
-        } catch {
-            // Error handling here or make the function throw
-        }
-        return items
-    }
-    
-    
-    /// This func is used for delete item in Restaurant list
-    /// - Parameter index: pass integer index
-    private func deleteItems(index: Int) {
-        withAnimation {
-            modelContext.delete(items[index])
-        }
-    }
-    
-    /// This function is used for saving cuisin first time in DB, if there is any new entry in cuisinArr then only we insert data through modelContext otherwise not
-    private func saveCuisineDta() {
-        let cuisinArr = [StringConstants.chinees, StringConstants.italian, StringConstants.indian, StringConstants.thai]
-        for item in cuisinArr {
-            let newItem = Cuisine(cuisinStr: item)
-            if loadCuisine().contains(where: { cuisine in
-                cuisine.cuisinStr == item
-            }) {
-                // don't save into Db
-            } else {
-                modelContext.insert(newItem)
+                self.viewModel.saveCuisineDta(context: modelContext)
+//                self.saveCuisineDta()
             }
         }
     }

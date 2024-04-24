@@ -16,14 +16,14 @@ class AddRestaurantVM {
     ///   - context: ModelContext
     @discardableResult
     func saveRestaurant(newItem: Restaurant, context: ModelContext) -> Bool {
-        var saveData: Bool = false
+        context.insert(newItem)
         do {
-            try context.insert(newItem)
-            saveData = true
+            try context.save()
         } catch {
             print("Failed to insert restaurnt: \(error)")
+            return false
         }
-        return saveData
+        return true
     }
     
     /// This method is used for loadCuisine

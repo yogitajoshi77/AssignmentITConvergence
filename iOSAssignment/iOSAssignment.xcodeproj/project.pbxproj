@@ -30,6 +30,7 @@
 		C522D8E62BD82208007E5053 /* ImageNameConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = C522D8E52BD82208007E5053 /* ImageNameConstant.swift */; };
 		C522D8F12BD82F7A007E5053 /* iOSAssignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C522D8F02BD82F7A007E5053 /* iOSAssignmentTests.swift */; };
 		C522D8F82BD92E9C007E5053 /* RestaurantTestCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = C522D8F72BD92E9C007E5053 /* RestaurantTestCases.swift */; };
+		C522D8F92BD93923007E5053 /* AddReviewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C522D8E82BD82472007E5053 /* AddReviewVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -419,6 +420,7 @@
 				C522D8CA2BD44835007E5053 /* RestaurantListView.swift in Sources */,
 				C522D87C2BD242EF007E5053 /* iOSAssignmentApp.swift in Sources */,
 				C522D8CC2BD44835007E5053 /* AddRestaurantModel.swift in Sources */,
+				C522D8F92BD93923007E5053 /* AddReviewVM.swift in Sources */,
 				C522D8D02BD44835007E5053 /* RestaurantRatingModel.swift in Sources */,
 				C522D8E62BD82208007E5053 /* ImageNameConstant.swift in Sources */,
 				C522D8B62BD404BA007E5053 /* StringConstant.swift in Sources */,

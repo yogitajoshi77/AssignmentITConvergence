@@ -24,14 +24,27 @@ final class RestaurantTestCases: XCTestCase {
     
     /// check Insert Restaurant is successfull
     @MainActor func testInsertRestaurantSuccess() throws {
-        // Create a new Restaurant instance
-        let restaurant = Restaurant(name: "Badami restaurant", cuisineType: [UserCuisine.init(cuisinStr: "Italian")], ratings: nil)
-        
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try ModelContainer(for: Restaurant.self, configurations: config)
+        
+        // Create a new Restaurant instance
+        let restaurant = Restaurant(name: "Badami restaurant", cuisineType: [UserCuisine(cuisinStr: "Italian")], ratings: nil)
 
         // Insert the restaurant into the database
-        let result = AddRestaurantVM().saveRestaurant(newItem: restaurant, context: container.mainContext)
+        let result = viewModel.saveRestaurant(newItem: restaurant, context: container.mainContext)
+        XCTAssert(result == true, "restaurnt saved succesfully")
+    }
+    
+    /// check Insert Restaurant is failure
+    @MainActor func testInsertRestaurantFailure() throws {
+        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        let container = try ModelContainer(for: UserCuisine.self, configurations: config)
+        
+        // Create a new Restaurant instance
+        let restaurant = Restaurant(name: "Badami restaurant", cuisineType: [UserCuisine(cuisinStr: "Italian")], ratings: nil)
+
+        // Insert the restaurant into the database
+        let result = viewModel.saveRestaurant(newItem: restaurant, context: container.mainContext)
         XCTAssert(result == true, "restaurnt saved succesfully")
     }
 

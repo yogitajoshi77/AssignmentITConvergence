@@ -18,10 +18,13 @@ struct AddReviewView: View {
     
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) private var modelContext
-        
+    
+    var viewModel: AddReviewVM
+
     // MARK: - Init Method
-    init(selectedRestaurant: Restaurant) {
+    init(selectedRestaurant: Restaurant, viewModel: AddReviewVM) {
         self.selectedRestaurant = selectedRestaurant
+        self.viewModel = viewModel
     }
 
     // MARK: - Body
@@ -49,7 +52,7 @@ struct AddReviewView: View {
                 withAnimation {
                     let newRating = RestaurantRating(restaurant: selectedRestaurant, rating: ratingStar, date: date, notes: ratingString)
                     selectedRestaurant.ratings?.append(newRating)
-                    modelContext.insert(newRating)
+                    viewModel.inserRating(newRating: newRating, context: modelContext)                    
                 }
                 // afte entering review dismiss the screen
                 dismiss()

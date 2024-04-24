@@ -51,7 +51,7 @@ struct RestaurantRatingView: View {
                     viewModel.showingSheet.toggle()
                 }
                 .sheet(isPresented: $viewModel.showingSheet) {
-                    AddReviewView(selectedRestaurant: selectedRestaurant)
+                    AddReviewView(selectedRestaurant: selectedRestaurant, viewModel: AddReviewVM())
                 }
                 
             }
