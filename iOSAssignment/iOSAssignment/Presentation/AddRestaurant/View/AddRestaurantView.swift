@@ -18,10 +18,12 @@ struct AddRestaurantView: View {
     @Environment(\.modelContext) private var modelContext
     
     var restaurant: Restaurant?
+    var viewModel: AddRestaurantVM
     
     // MARK: - Init function
-    init(restaurant: Restaurant? = nil, selections: [String] = []) {
+    init(restaurant: Restaurant? = nil, selections: [String] = [], viewModel: AddRestaurantVM) {
         self.restaurant = restaurant
+        self.viewModel = viewModel
         if let restaurant = restaurant {
             self._resturantName = State(initialValue: restaurant.name)
             self._selections = State(initialValue: selections)
@@ -75,7 +77,7 @@ struct AddRestaurantView: View {
                     } else {
                         // if restaurant object is nil then it is for creating new restaurant object, need to insert in DB
                         let newItem = Restaurant(name: resturantName, cuisineType: selectedCuisin)
-                        modelContext.insert(newItem)
+                        viewModel.saveRestaurant(newItem: newItem, context: modelContext)
                     }
                 }
                 dismiss()
@@ -98,21 +100,7 @@ struct AddRestaurantView: View {
         .padding(.all, 20)
         .onAppear {
             // load cuisine from DB
-            self.loadCuisine()
-        }
-    }
-}
-
-// extension made to put all private method in one place
-extension AddRestaurantView {
-    /// This function is used to load cuisine
-    private func loadCuisine() {
-        let fetchDescriptor = FetchDescriptor<Cuisine>(sortBy: [SortDescriptor(\Cuisine.cuisinStr)])
-        
-        do {
-            items = try modelContext.fetch(fetchDescriptor)
-        } catch {
-             // Error handling here or make the function throw
+            items = viewModel.loadCuisine(context: modelContext)
         }
     }
 }

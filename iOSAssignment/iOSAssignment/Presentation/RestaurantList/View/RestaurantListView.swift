@@ -49,7 +49,7 @@ struct RestaurantListView: View {
                             }
                             // .sheet will present sheet for editing restaurant
                             .sheet(isPresented: $viewModel.showingEditRestaurantSheet) {
-                                AddRestaurantView(restaurant: item, selections: viewModel.selections)
+                                AddRestaurantView(restaurant: item, selections: viewModel.selections, viewModel: AddRestaurantVM())
                             }
                     }
                 }
@@ -71,7 +71,7 @@ struct RestaurantListView: View {
                         viewModel.showingSheet.toggle()
                     }
                     .sheet(isPresented: $viewModel.showingSheet) {
-                        AddRestaurantView()
+                        AddRestaurantView(viewModel: AddRestaurantVM())
                     }
                     
                 }

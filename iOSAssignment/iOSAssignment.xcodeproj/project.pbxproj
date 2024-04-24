@@ -29,6 +29,7 @@
 		C522D8DA2BD5706F007E5053 /* RestaurantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C522D8D92BD5706F007E5053 /* RestaurantView.swift */; };
 		C522D8E62BD82208007E5053 /* ImageNameConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = C522D8E52BD82208007E5053 /* ImageNameConstant.swift */; };
 		C522D8F12BD82F7A007E5053 /* iOSAssignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C522D8F02BD82F7A007E5053 /* iOSAssignmentTests.swift */; };
+		C522D8F82BD92E9C007E5053 /* RestaurantTestCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = C522D8F72BD92E9C007E5053 /* RestaurantTestCases.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		C522D8E82BD82472007E5053 /* AddReviewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewVM.swift; sourceTree = "<group>"; };
 		C522D8EE2BD82F7A007E5053 /* iOSAssignmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSAssignmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C522D8F02BD82F7A007E5053 /* iOSAssignmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSAssignmentTests.swift; sourceTree = "<group>"; };
+		C522D8F72BD92E9C007E5053 /* RestaurantTestCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantTestCases.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,6 +300,7 @@
 			isa = PBXGroup;
 			children = (
 				C522D8F02BD82F7A007E5053 /* iOSAssignmentTests.swift */,
+				C522D8F72BD92E9C007E5053 /* RestaurantTestCases.swift */,
 			);
 			path = iOSAssignmentTests;
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C522D8F82BD92E9C007E5053 /* RestaurantTestCases.swift in Sources */,
 				C522D8F12BD82F7A007E5053 /* iOSAssignmentTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
